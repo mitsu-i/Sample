@@ -24,6 +24,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.event.player.PlayerEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -38,15 +40,9 @@ public final class Sample extends JavaPlugin implements Listener {
   public void onEnable() {
     // Plugin startup logic
     Bukkit.getPluginManager().registerEvents(this, this);
+    getCommand("levelup").setExecutor(new LevelUpCommand());
 
-    List<Integer> numberList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15123);
-
-    numberList.stream()
-        .mapToInt(number -> number)
-        .filter(number -> number <= 5)
-        .forEach(System.out::println);
-
-    String mailed = inf@raise-tech.net;
+    getCommand("LevelChange").setExecutor(new LevelChangeCommand());
   }
 
 
@@ -80,14 +76,12 @@ public final class Sample extends JavaPlugin implements Listener {
 
         // 追加した情報で再設定する。
         firework.setFireworkMeta(fireworkMeta);
-
-        //firework.txtに書き込みを行う
-        Path path = Path.of("firework.txt");
-        Files.writeString(path, "花火があがった！");
-        player.sendMessage(Files.readString(path));
     }
     count++;
   }
+
+  
+
 
   @EventHandler
   public void onPlayerBedEnter(PlayerBedEnterEvent e) {
@@ -99,6 +93,7 @@ public final class Sample extends JavaPlugin implements Listener {
         .forEach(item -> item.setAmount(64));
     player.getInventory().setContents(itemStacks);
   }
+
 
 
   @Override
