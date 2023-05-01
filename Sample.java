@@ -1,19 +1,10 @@
 package plugin.sample;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.swing.ListSelectionModel;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -24,8 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
-import org.bukkit.event.player.PlayerEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -40,10 +29,11 @@ public final class Sample extends JavaPlugin implements Listener {
   public void onEnable() {
     // Plugin startup logic
     Bukkit.getPluginManager().registerEvents(this, this);
-    getCommand("levelup").setExecutor(new LevelUpCommand());
+    getCommand("setLevel30").setExecutor(new setLevel30());
 
     getCommand("LevelChange").setExecutor(new LevelChangeCommand());
   }
+
 
 
   /**
