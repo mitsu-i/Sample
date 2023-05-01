@@ -32,6 +32,7 @@ public final class Sample extends JavaPlugin implements Listener {
     getCommand("setLevel30").setExecutor(new setLevel30());
 
     getCommand("LevelChange").setExecutor(new LevelChangeCommand());
+    getCommand("AllSetLevel").setExecutor(new AllSetLevelCommand());
   }
 
 
