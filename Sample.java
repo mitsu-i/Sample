@@ -36,7 +36,6 @@ public final class Sample extends JavaPlugin implements Listener {
   }
 
 
-
   /**
    * プレイヤーがスニークを開始/終了する際に起動されるイベントハンドラ。
    *
@@ -49,29 +48,27 @@ public final class Sample extends JavaPlugin implements Listener {
     World world = player.getWorld();
 
     if (count % 2 == 0) {
-        // 花火オブジェクトをプレイヤーのロケーション地点に対して出現させる。
-        Firework firework = world.spawn(player.getLocation(), Firework.class);
+      // 花火オブジェクトをプレイヤーのロケーション地点に対して出現させる。
+      Firework firework = world.spawn(player.getLocation(), Firework.class);
 
-        // 花火オブジェクトが持つメタ情報を取得。
-        FireworkMeta fireworkMeta = firework.getFireworkMeta();
+      // 花火オブジェクトが持つメタ情報を取得。
+      FireworkMeta fireworkMeta = firework.getFireworkMeta();
 
-        // メタ情報に対して設定を追加したり、値の上書きを行う。
-        // 今回は青色で星型の花火を打ち上げる。
-        fireworkMeta.addEffect(
-            FireworkEffect.builder()
-                .withColor(Color.RED)
-                .with(Type.BALL_LARGE)
-                .withFlicker()
-                .build());
-        fireworkMeta.setPower(1);
+      // メタ情報に対して設定を追加したり、値の上書きを行う。
+      // 今回は青色で星型の花火を打ち上げる。
+      fireworkMeta.addEffect(
+          FireworkEffect.builder()
+              .withColor(Color.RED)
+              .with(Type.BALL_LARGE)
+              .withFlicker()
+              .build());
+      fireworkMeta.setPower(1);
 
-        // 追加した情報で再設定する。
-        firework.setFireworkMeta(fireworkMeta);
+      // 追加した情報で再設定する。
+      firework.setFireworkMeta(fireworkMeta);
     }
     count++;
   }
-
-  
 
 
   @EventHandler
@@ -84,7 +81,6 @@ public final class Sample extends JavaPlugin implements Listener {
         .forEach(item -> item.setAmount(64));
     player.getInventory().setContents(itemStacks);
   }
-
 
 
   @Override
